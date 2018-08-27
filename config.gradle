@@ -9,18 +9,20 @@ ext {
     ]
 
     version = [
-            androidSupportVersion: "28.0.0-rc01",
-            constraintVersion    : "1.1.2",
-            butterknifeVersion   : "8.8.1",
-            okhttpVersion        : "3.11.0",
-            retrofitVersion      : "2.4.0",
-            rxJavaVersion        : "2.2.1",
-            rxAndroidVersion     : "2.1.0",
-            glideVersion         : "4.7.1",
-            gsonVersion          : "2.8.5",
-            eventBusVersion      : "3.1.1",
-            timberVersion        : "4.7.0",
-            canaryVersion        : "1.6.1"
+            androidSupportVersion : "28.0.0-rc01",
+            constraintVersion     : "1.1.2",
+            butterknifeVersion    : "8.8.1",
+            okhttpVersion         : "3.11.0",
+            retrofitVersion       : "2.4.0",
+            rxJavaVersion         : "2.2.1",
+            rxAndroidVersion      : "2.1.0",
+            arouterVersion        : "1.4.0",
+            arouterCompilerVersion: "1.2.1",
+            glideVersion          : "4.7.1",
+            gsonVersion           : "2.8.5",
+            eventBusVersion       : "3.1.1",
+            timberVersion         : "4.7.0",
+            canaryVersion         : "1.6.1"
     ]
 
     dependencies = [
@@ -45,6 +47,9 @@ ext {
             "rxandroid2"              : "io.reactivex.rxjava2:rxandroid:${version["rxAndroidVersion"]}",
             "rxjava2"                 : "io.reactivex.rxjava2:rxjava:${version["rxJavaVersion"]}",
 
+            "arouter"                  : "com.alibaba:arouter-api:${version["arouterVersion"]}",
+            "arouter-compiler"         : "com.alibaba:arouter-compiler:${["arouterCompilerVersion"]}",
+
             "glide"                   : "com.github.bumptech.glide:glide:${version["glideVersion"]}",
             "glide-compiler"          : "com.github.bumptech.glide:compiler:${version["glideVersion"]}",
             "glide-loader-okhttp3"    : "com.github.bumptech.glide:okhttp3-integration:${version["glideVersion"]}",
@@ -56,6 +61,11 @@ ext {
             "timber"                  : "com.jakewharton.timber:timber:${version["timberVersion"]}",
 
             "canary-debug"            : "com.squareup.leakcanary:leakcanary-android:${version["canaryVersion"]}",
-            "canary-release"          : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canaryVersion"]}"
+            "canary-release"          : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canaryVersion"]}",
+
+            "junit"                   : "junit:junit:4.12",
+            "androidJUnitRunner"      : "android.support.test.runner.AndroidJUnitRunner",
+            "runner"                  : "com.android.support.test:runner:1.0.2",
+            "espresso-core"           : "com.android.support.test.espresso:espresso-core:3.0.2",
     ]
 }

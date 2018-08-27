@@ -36,6 +36,8 @@ dependencies {
     api rootProject.ext.dependencies["rxjava2"]
     api rootProject.ext.dependencies["rxandroid2"]
 
+    api rootProject.ext.dependencies["arouter"]
+
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
