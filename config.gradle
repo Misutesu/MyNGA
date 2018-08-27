@@ -1,0 +1,61 @@
+ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.2",
+            minSdkVersion    : 15,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+
+    version = [
+            androidSupportVersion: "28.0.0-rc01",
+            constraintVersion    : "1.1.2",
+            butterknifeVersion   : "8.8.1",
+            okhttpVersion        : "3.11.0",
+            retrofitVersion      : "2.4.0",
+            rxJavaVersion        : "2.2.1",
+            rxAndroidVersion     : "2.1.0",
+            glideVersion         : "4.7.1",
+            gsonVersion          : "2.8.5",
+            eventBusVersion      : "3.1.1",
+            timberVersion        : "4.7.0",
+            canaryVersion        : "1.6.1"
+    ]
+
+    dependencies = [
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${version["androidSupportVersion"]}",
+            "design"                  : "com.android.support:design:${version["androidSupportVersion"]}",
+            "support-v4"              : "com.android.support:support-v4:${version["androidSupportVersion"]}",
+            "cardview-v7"             : "com.android.support:cardview-v7:${version["androidSupportVersion"]}",
+            "annotations"             : "com.android.support:support-annotations:${version["androidSupportVersion"]}",
+            "recyclerview-v7"         : "com.android.support:recyclerview-v7:${version["androidSupportVersion"]}",
+            "constraint-layout"       : "com.android.support.constraint:constraint-layout:${version["constraintVersion"]}",
+
+            "butterknife"             : "com.jakewharton:butterknife:${version["butterknifeVersion"]}",
+            "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:${version["butterknifeVersion"]}",
+
+            "okhttp3"                 : "com.squareup.okhttp3:okhttp:${version["okhttpVersion"]}",
+
+            "retrofit"                : "com.squareup.retrofit2:retrofit:${version["retrofitVersion"]}",
+            "retrofit-converter-gson" : "com.squareup.retrofit2:converter-gson:${version["retrofitVersion"]}",
+            "retrofit-adapter-rxjava" : "com.squareup.retrofit2:adapter-rxjava:${version["retrofitVersion"]}",
+            "retrofit-adapter-rxjava2": "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitVersion"]}",
+
+            "rxandroid2"              : "io.reactivex.rxjava2:rxandroid:${version["rxAndroidVersion"]}",
+            "rxjava2"                 : "io.reactivex.rxjava2:rxjava:${version["rxJavaVersion"]}",
+
+            "glide"                   : "com.github.bumptech.glide:glide:${version["glideVersion"]}",
+            "glide-compiler"          : "com.github.bumptech.glide:compiler:${version["glideVersion"]}",
+            "glide-loader-okhttp3"    : "com.github.bumptech.glide:okhttp3-integration:${version["glideVersion"]}",
+
+            "gson"                    : "com.google.code.gson:gson:${version["gsonVersion"]}",
+
+            "eventBus"                : "org.greenrobot:eventbus:${version["eventBusVersion"]}",
+
+            "timber"                  : "com.jakewharton.timber:timber:${version["timberVersion"]}",
+
+            "canary-debug"            : "com.squareup.leakcanary:leakcanary-android:${version["canaryVersion"]}",
+            "canary-release"          : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canaryVersion"]}"
+    ]
+}
