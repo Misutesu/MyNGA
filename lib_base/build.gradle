@@ -12,15 +12,27 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 }
 
 dependencies {
     api rootProject.ext.dependencies["annotations"]
-    api rootProject.ext.dependencies["support-v4"]
-    api rootProject.ext.dependencies["appcompat-v7"]
-    api rootProject.ext.dependencies["design"]
-    api rootProject.ext.dependencies["cardview-v7"]
+    api(rootProject.ext.dependencies["support-v4"]) {
+        exclude module: 'support-annotations'
+    }
+    api(rootProject.ext.dependencies["appcompat-v7"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+    }
+    api(rootProject.ext.dependencies["cardview-v7"]) {
+        exclude module: 'support-annotations'
+    }
 
     api rootProject.ext.dependencies["constraint-layout"]
 
@@ -29,16 +41,23 @@ dependencies {
 
     api rootProject.ext.dependencies["okhttp3"]
 
-    api rootProject.ext.dependencies["retrofit"]
+    api(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
     api rootProject.ext.dependencies["retrofit-converter-gson"]
     api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
 
     api rootProject.ext.dependencies["rxjava2"]
-    api rootProject.ext.dependencies["rxandroid2"]
+    api(rootProject.ext.dependencies["rxandroid2"]) {
+        exclude module: 'rxjava'
+    }
 
     api rootProject.ext.dependencies["arouter"]
 
-    api rootProject.ext.dependencies["glide"]
+    api(rootProject.ext.dependencies["glide"]) {
+        exclude module: 'support-v4'
+    }
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
     api rootProject.ext.dependencies["gson"]
