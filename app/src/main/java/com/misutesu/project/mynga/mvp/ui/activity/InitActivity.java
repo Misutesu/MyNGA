@@ -1,5 +1,6 @@
 package com.misutesu.project.mynga.mvp.ui.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -9,6 +10,7 @@ import com.misutesu.project.mynga.R;
 import com.misutesu.project.mynga.entity.Server;
 import com.misutesu.project.mynga.mvp.contract.InitContract;
 import com.misutesu.project.mynga.mvp.presenter.InitPresenter;
+import com.misutesu.project.rxpermission.RxPermission;
 
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class InitActivity extends BaseActivity<InitPresenter> implements InitCon
         super.onCreate(savedInstanceState);
 
         BaseUtils.hideNavigationBar(this);
+
+        mPresenter.addSubscription(RxPermission.addPermissions(Manifest.permission.ACCESS_FINE_LOCATION).request(this)
+                .subscribe(aBoolean -> Timber.d("result : %b", aBoolean)));
     }
 
     @Override
