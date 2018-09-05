@@ -12,17 +12,13 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
-            }
-        }
     }
 }
 
 dependencies {
     api rootProject.ext.dependencies["annotations"]
+    compileOnly rootProject.ext.dependencies["javax.annotation"]
+
     api(rootProject.ext.dependencies["support-v4"]) {
         exclude module: 'support-annotations'
     }
@@ -47,6 +43,11 @@ dependencies {
     }
     api rootProject.ext.dependencies["retrofit-converter-gson"]
     api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+
+    api rootProject.ext.dependencies["rxjava"]
+    api(rootProject.ext.dependencies["rxandroid"]) {
+        exclude module: 'rxjava'
+    }
 
     api rootProject.ext.dependencies["rxjava2"]
     api(rootProject.ext.dependencies["rxandroid2"]) {

@@ -11,22 +11,30 @@ import com.misutesu.project.lib_base.mvp.IView;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 public abstract class BasePresenter<M extends IModel, V extends IView> implements IPresenter, LifecycleObserver {
 
+    private CompositeSubscription mSubscription;
     private CompositeDisposable mDisposable;
 
-    private IView mRootView;
+    protected V mRootView;
 
-    @Override
-    public void bindLifecycle(IView view) {
+    public BasePresenter(V view) {
         mRootView = view;
         if (mRootView != null && mRootView instanceof LifecycleOwner) {
             ((LifecycleOwner) mRootView).getLifecycle().addObserver(this);
         }
     }
 
-    @Override
+    public void addSubscription(Subscription subScription) {
+        if (mSubscription == null) {
+            mSubscription = new CompositeSubscription();
+        }
+        mSubscription.add(subScription);
+    }
+
     public void addDisposable(Disposable disposable) {
         if (mDisposable == null) {
             mDisposable = new CompositeDisposable();
@@ -56,6 +64,9 @@ public abstract class BasePresenter<M extends IModel, V extends IView> implement
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
+        if (mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
         if (mDisposable != null) {
             mDisposable.clear();
         }

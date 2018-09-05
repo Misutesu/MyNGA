@@ -1,3 +1,4 @@
 include ':app'
 include ':lib_base'
-include ':bmob_module'
+include ':component:bmob_module'
+include ':component:rxpermission'

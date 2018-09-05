@@ -8,6 +8,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
+        applicationId "com.misutesu.project"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -17,7 +18,8 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                includeCompileClasspath true
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -37,15 +39,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        pickFirst 'META-INF/*'
+    }
 }
 
 dependencies {
     implementation project(':lib_base')
-    implementation project(":bmob_module")
+    implementation project(":component:bmob_module")
+    implementation project(":component:rxpermission")
 
-//    annotationProcessor(rootProject.ext.dependencies["arouter-compiler"]) {
-//        exclude module: 'support-annotations'
-//    }
+    annotationProcessor(rootProject.ext.dependencies["arouter-compiler"]) {
+        exclude module: 'support-annotations'
+    }
 
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
         exclude module: 'support-annotations'

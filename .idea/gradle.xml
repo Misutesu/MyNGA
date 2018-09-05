@@ -9,7 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/bmob_module" />
+            <option value="$PROJECT_DIR$/component" />
+            <option value="$PROJECT_DIR$/component/bmob_module" />
+            <option value="$PROJECT_DIR$/component/rxpermission" />
             <option value="$PROJECT_DIR$/lib_base" />
           </set>
         </option>
