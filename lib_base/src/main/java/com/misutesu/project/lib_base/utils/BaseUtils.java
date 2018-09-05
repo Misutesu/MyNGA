@@ -37,6 +37,17 @@ public class BaseUtils {
         }
     }
 
+    public static void setStatusIconColor(Activity activity, boolean isBlack) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            int systemUiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
+            if (isBlack) {
+                activity.getWindow().getDecorView().setSystemUiVisibility(systemUiVisibility | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            } else {
+                activity.getWindow().getDecorView().setSystemUiVisibility(systemUiVisibility | View.SYSTEM_UI_FLAG_VISIBLE);
+            }
+        }
+    }
+
     public static void openKeyBord(Context context, EditText mEditText) {
         InputMethodManager imm = (InputMethodManager) context
                 .getSystemService(Context.INPUT_METHOD_SERVICE);

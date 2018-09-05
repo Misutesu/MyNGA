@@ -33,6 +33,7 @@ public class InitActivity extends BaseActivity<InitContract.Presenter> implement
         super.onCreate(savedInstanceState);
 
         BaseUtils.hideNavigationBar(this);
+        BaseUtils.setStatusIconColor(this, false);
 
         mPresenter.getServerInfo();
         RxPermission.addPermissions(Manifest.permission.ACCESS_FINE_LOCATION).request(this)
