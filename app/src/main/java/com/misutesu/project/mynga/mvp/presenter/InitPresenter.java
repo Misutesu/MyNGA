@@ -20,8 +20,8 @@ public class InitPresenter extends BasePresenter<InitContract.Model, InitContrac
     @Override
     public void getServerInfo() {
         addSubscription(new BmobQuery<Server>().findObjectsObservable(Server.class)
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Server>>() {
                     @Override
                     public void onCompleted() {

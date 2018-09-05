@@ -16,10 +16,10 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class InitActivity extends BaseActivity<InitPresenter> implements InitContract.View {
+public class InitActivity extends BaseActivity<InitContract.Presenter> implements InitContract.View {
 
     @Override
-    protected InitPresenter bindPresenter() {
+    protected InitContract.Presenter bindPresenter() {
         return new InitPresenter(this);
     }
 
@@ -34,8 +34,9 @@ public class InitActivity extends BaseActivity<InitPresenter> implements InitCon
 
         BaseUtils.hideNavigationBar(this);
 
-        mPresenter.addSubscription(RxPermission.addPermissions(Manifest.permission.ACCESS_FINE_LOCATION).request(this)
-                .subscribe(aBoolean -> Timber.d("result : %b", aBoolean)));
+        mPresenter.getServerInfo();
+        RxPermission.addPermissions(Manifest.permission.ACCESS_FINE_LOCATION).request(this)
+                .subscribe(aBoolean -> Timber.d("result : %b", aBoolean));
     }
 
     @Override

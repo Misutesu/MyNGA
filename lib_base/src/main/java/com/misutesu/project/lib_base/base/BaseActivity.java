@@ -13,7 +13,7 @@ import com.misutesu.project.lib_base.utils.EventBusUtils;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IView {
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IView {
 
     private Unbinder unbinder;
 
