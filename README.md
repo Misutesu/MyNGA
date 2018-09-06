@@ -1,2 +1,2 @@
 # MyNGA
-##No Thing
+No Thing
