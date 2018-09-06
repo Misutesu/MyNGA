@@ -24,4 +24,8 @@ public class ActivityUtils {
             }
         }
     }
+
+    public static Activity getCurrentActivity() {
+        return activities.get(activities.size() - 1).get();
+    }
 }

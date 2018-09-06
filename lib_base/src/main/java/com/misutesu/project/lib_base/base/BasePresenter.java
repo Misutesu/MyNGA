@@ -20,12 +20,17 @@ public abstract class BasePresenter<M extends IModel, V extends IView> implement
     private CompositeDisposable mDisposable;
 
     protected V mRootView;
+    protected M mModel;
+
+    protected abstract M bindModel();
 
     public BasePresenter(V view) {
         mRootView = view;
         if (mRootView != null && mRootView instanceof LifecycleOwner) {
             ((LifecycleOwner) mRootView).getLifecycle().addObserver(this);
         }
+
+        mModel = bindModel();
     }
 
     public void addSubscription(Subscription subScription) {

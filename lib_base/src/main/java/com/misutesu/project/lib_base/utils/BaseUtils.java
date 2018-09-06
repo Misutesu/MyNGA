@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.misutesu.project.lib_base.R;
+
 public class BaseUtils {
     public static void hideStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -19,7 +21,7 @@ public class BaseUtils {
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
-//            window.setNavigationBarColor(ThemeUtil.getColor(activity.getTheme(), R.attr.colorPrimary));
+            window.setNavigationBarColor(ThemeUtils.getColor(activity, R.attr.colorPrimary));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }

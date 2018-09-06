@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <style name="FirstStyle" parent="Theme.AppCompat.Light.NoActionBar">
@@ -192,5 +193,9 @@
     <style name="AllTransparent" parent="BlueTheme">
         <item name="android:windowBackground">@color/all_transparent</item>
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ToolBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
 </resources>

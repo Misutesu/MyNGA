@@ -4,14 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.misutesu.project.lib_base.R;
 import com.misutesu.project.lib_base.mvp.IPresenter;
 import com.misutesu.project.lib_base.mvp.IView;
 import com.misutesu.project.lib_base.utils.ActivityUtils;
 import com.misutesu.project.lib_base.utils.BaseUtils;
 import com.misutesu.project.lib_base.utils.EventBusUtils;
+import com.misutesu.project.lib_base.utils.ThemeUtils;
+import com.misutesu.project.lib_base.utils.ToastUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.jessyan.autosize.internal.CustomAdapt;
 
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IView {
 
@@ -29,6 +33,8 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ThemeUtils.setTheme(this);
+
         super.onCreate(savedInstanceState);
 
         BaseUtils.hideStatusBar(this);

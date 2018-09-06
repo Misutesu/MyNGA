@@ -1,26 +1,26 @@
 package com.misutesu.project.mynga.mvp.ui.activity;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.misutesu.project.lib_base.base.BaseActivity;
 import com.misutesu.project.lib_base.utils.BaseUtils;
 import com.misutesu.project.mynga.R;
+import com.misutesu.project.mynga.config.ServerConfig;
 import com.misutesu.project.mynga.entity.Server;
 import com.misutesu.project.mynga.mvp.contract.InitContract;
-import com.misutesu.project.mynga.mvp.presenter.InitPresenter;
-import com.misutesu.project.rxpermission.RxPermission;
+import com.misutesu.project.mynga.mvp.presenter.InitPresenterImpl;
+import com.misutesu.project.mynga.router.SystemRouter;
 
 import java.util.List;
 
-import timber.log.Timber;
-
+@Route(group = SystemRouter.group, path = SystemRouter.init)
 public class InitActivity extends BaseActivity<InitContract.Presenter> implements InitContract.View {
 
     @Override
     protected InitContract.Presenter bindPresenter() {
-        return new InitPresenter(this);
+        return new InitPresenterImpl(this);
     }
 
     @Override
@@ -33,16 +33,13 @@ public class InitActivity extends BaseActivity<InitContract.Presenter> implement
         super.onCreate(savedInstanceState);
 
         BaseUtils.hideNavigationBar(this);
-        BaseUtils.setStatusIconColor(this, false);
 
         mPresenter.getServerInfo();
-        RxPermission.addPermissions(Manifest.permission.ACCESS_FINE_LOCATION).request(this)
-                .subscribe(aBoolean -> Timber.d("result : %b", aBoolean));
     }
 
     @Override
-    public void getServerInfoSuccess(List<Server> servers) {
-        Timber.d("TAG:%s", servers.toString());
+    public void getServerInfoSuccess() {
+
     }
 
     @Override

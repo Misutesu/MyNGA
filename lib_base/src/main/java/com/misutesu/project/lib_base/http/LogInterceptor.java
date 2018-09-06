@@ -23,13 +23,12 @@ public class LogInterceptor implements Interceptor {
         Timber.tag(TAG).d("request: %s", request.toString());
         okhttp3.MediaType mediaType = response.body().contentType();
         Timber.tag(TAG).d("mediaType.type: %s", mediaType.toString());
-        if (mediaType.equals(MediaType.parse("application/json;charset=UTF-8"))
-                || mediaType.equals(MediaType.parse("text/plain;charset=UTF-8"))) {
+//        if (mediaType.equals(MediaType.parse("application/json;charset=UTF-8"))) {
             String content = response.body().string();
             Timber.tag(TAG).d("onResponse: %s", format(content));
             return response.newBuilder().body((okhttp3.ResponseBody.create(mediaType, content))).build();
-        }
-        return response;
+//        }
+//        return response;
     }
 
     private static String format(String jsonStr) {
