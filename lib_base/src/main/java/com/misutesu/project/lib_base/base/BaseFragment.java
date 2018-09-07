@@ -15,7 +15,7 @@ import com.misutesu.project.lib_base.utils.EventBusUtils;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements IView {
+public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IView {
 
     private Unbinder unbinder;
 

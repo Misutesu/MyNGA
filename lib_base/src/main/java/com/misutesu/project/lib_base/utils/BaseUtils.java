@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -47,6 +48,23 @@ public class BaseUtils {
             } else {
                 activity.getWindow().getDecorView().setSystemUiVisibility(systemUiVisibility | View.SYSTEM_UI_FLAG_VISIBLE);
             }
+        }
+    }
+
+    public static void addStatusBarPadding(View view) {
+        int statusBarHeight;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && (statusBarHeight = UiUtils.getStatusBarHeight()) > 0) {
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + statusBarHeight, view.getPaddingRight(), view.getPaddingBottom());
+        }
+    }
+
+    public static void addStatusBarHeightAndPadding(View view) {
+        int statusBarHeight;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && (statusBarHeight = UiUtils.getStatusBarHeight()) > 0) {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            layoutParams.height = statusBarHeight + layoutParams.height;
+            view.setLayoutParams(layoutParams);
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + statusBarHeight, view.getPaddingRight(), view.getPaddingBottom());
         }
     }
 

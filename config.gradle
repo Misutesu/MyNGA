@@ -21,9 +21,10 @@ ext {
             arouterVersion        : "1.4.0",
             arouterCompilerVersion: "1.2.1",
             glideVersion          : "4.8.0",
+            pagingVersion         : "1.0.0",
+            roomVersion           : "1.1.1",
             gsonVersion           : "2.8.5",
             eventBusVersion       : "3.1.1",
-            autoSizeVersion       : "0.9.1",
             timberVersion         : "4.7.1",
             canaryVersion         : "1.6.1"
     ]
@@ -61,11 +62,17 @@ ext {
             "glide-recyclerview"      : "com.github.bumptech.glide:recyclerview-integration:${version["glideVersion"]}",
             "glide-loader-okhttp3"    : "com.github.bumptech.glide:okhttp3-integration:${version["glideVersion"]}",
 
+            "paging"                  : "android.arch.paging:runtime:${version["pagingVersion"]}",
+            "paging-rxjava2"          : "android.arch.paging:rxjava2:1.0.0-rc1",
+
+            "room"                    : "android.arch.persistence.room:runtime:${version["roomVersion"]}",
+            "room-compiler"           : "android.arch.persistence.room:compiler:${version["roomVersion"]}",
+            "room-rxjava2"            : "android.arch.persistence.room:rxjava2:${version["roomVersion"]}",
+            "room-test"               : "android.arch.persistence.room:testing:${version["roomVersion"]}",
+
             "gson"                    : "com.google.code.gson:gson:${version["gsonVersion"]}",
 
             "eventBus"                : "org.greenrobot:eventbus:${version["eventBusVersion"]}",
-
-            "autoSize"                : "me.jessyan:autosize:${version["autoSizeVersion"]}",
 
             "timber"                  : "com.jakewharton.timber:timber:${version["timberVersion"]}",
 

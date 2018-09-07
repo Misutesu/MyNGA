@@ -19,7 +19,8 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath true
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                arguments = [AROUTER_MODULE_NAME  : project.getName(),
+                             "room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
     }
@@ -54,6 +55,9 @@ dependencies {
     }
 
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'support-annotations'
+    }
+    annotationProcessor(rootProject.ext.dependencies["room-compiler"]) {
         exclude module: 'support-annotations'
     }
 

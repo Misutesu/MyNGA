@@ -1,4 +1,4 @@
-package com.misutesu.project.lib_base.http.glide;
+package com.misutesu.project.lib_base.http.imageloader;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

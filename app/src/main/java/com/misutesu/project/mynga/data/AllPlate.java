@@ -1,5 +1,10 @@
-package com.misutesu.project.mynga.entity;
+package com.misutesu.project.mynga.data;
 
+import android.os.Parcelable;
+
+import com.misutesu.project.mynga.entity.Plate;
+
+import java.io.Serializable;
 import java.util.List;
 
 public class AllPlate {
@@ -41,7 +46,7 @@ public class AllPlate {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable {
 
         private int id;
         private String name;
@@ -71,12 +76,12 @@ public class AllPlate {
             this.groups = groups;
         }
 
-        public static class GroupsBean {
+        public static class GroupsBean implements Serializable {
 
             private int id;
             private String name;
             private String info;
-            private List<ForumsBean> forums;
+            private List<Plate> forums;
 
             public int getId() {
                 return id;
@@ -102,61 +107,12 @@ public class AllPlate {
                 this.info = info;
             }
 
-            public List<ForumsBean> getForums() {
+            public List<Plate> getForums() {
                 return forums;
             }
 
-            public void setForums(List<ForumsBean> forums) {
+            public void setForums(List<Plate> forums) {
                 this.forums = forums;
-            }
-
-            public static class ForumsBean {
-
-                private int id;
-                private String name;
-                private String info;
-                private String icon;
-                private boolean is_forumlist;
-
-                public int getId() {
-                    return id;
-                }
-
-                public void setId(int id) {
-                    this.id = id;
-                }
-
-                public String getName() {
-                    return name;
-                }
-
-                public void setName(String name) {
-                    this.name = name;
-                }
-
-                public String getInfo() {
-                    return info;
-                }
-
-                public void setInfo(String info) {
-                    this.info = info;
-                }
-
-                public String getIcon() {
-                    return icon;
-                }
-
-                public void setIcon(String icon) {
-                    this.icon = icon;
-                }
-
-                public boolean isIs_forumlist() {
-                    return is_forumlist;
-                }
-
-                public void setIs_forumlist(boolean is_forumlist) {
-                    this.is_forumlist = is_forumlist;
-                }
             }
         }
     }

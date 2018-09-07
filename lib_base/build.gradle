@@ -70,9 +70,10 @@ dependencies {
         transitive = false
     }
 
-    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["room"]
+    api rootProject.ext.dependencies["room-rxjava2"]
 
-//    api rootProject.ext.dependencies["autoSize"]
+    api rootProject.ext.dependencies["gson"]
 
     api rootProject.ext.dependencies["eventBus"]
 

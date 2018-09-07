@@ -1,29 +1,31 @@
 package com.misutesu.project.mynga.mvp.contract;
 
+import com.misutesu.project.lib_base.base.BaseModel;
 import com.misutesu.project.lib_base.mvp.IModel;
 import com.misutesu.project.lib_base.mvp.IPresenter;
 import com.misutesu.project.lib_base.mvp.IView;
-import com.misutesu.project.mynga.data.AllPlate;
+import com.misutesu.project.mynga.entity.Plate;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
-public interface MainContract {
+public interface PlateContract {
     interface Model extends IModel {
 
-        Observable<AllPlate> getAllPlat();
+        Flowable<List<Plate>> getCollectPlats();
     }
 
     interface View extends IView {
 
-        void getAllPlatSuccess(AllPlate allPlate);
+        void getCollectPlatsSuccess(List<Plate> plates);
 
-        void getAllPlatError();
-
-        void getAllPlatEnd();
+        void getCollectPlatsError();
     }
 
     interface Presenter extends IPresenter {
 
-        void getAllPlat();
+        void getCollectPlats();
     }
 }

@@ -30,12 +30,14 @@ public class CompatToolbar extends Toolbar {
     private void setup() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             statusBarHeight = UiUtils.getStatusBarHeight();
+            if (statusBarHeight != 0) {
+                setPadding(getPaddingLeft(), getPaddingTop() + statusBarHeight, getPaddingRight(), getPaddingBottom());
+            }
         }
-        setPadding(getPaddingLeft(), getPaddingTop() + statusBarHeight, getPaddingRight(), getPaddingBottom());
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec + statusBarHeight);
+        super.onMeasure(widthMeasureSpec, UiUtils.dip2px(56) + statusBarHeight);
     }
 }

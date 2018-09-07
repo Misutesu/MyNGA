@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyNGA</string>
+
+    <string name="my_collection">我的收藏</string>
 </resources>

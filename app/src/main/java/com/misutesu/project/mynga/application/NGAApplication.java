@@ -8,9 +8,8 @@ import com.misutesu.project.lib_base.utils.ThemeUtils;
 import com.misutesu.project.lib_base.utils.UiUtils;
 import com.misutesu.project.mynga.BuildConfig;
 import com.misutesu.project.mynga.config.ServerConfig;
+import com.misutesu.project.mynga.database.RoomManager;
 
-import me.jessyan.autosize.AutoSizeConfig;
-import me.jessyan.autosize.unit.Subunits;
 import timber.log.Timber;
 
 public class NGAApplication extends Application {
@@ -32,6 +31,8 @@ public class NGAApplication extends Application {
         UiUtils.init(this);
 
         ThemeUtils.init(this);
+
+        RoomManager.init(this);
 
         ServerConfig.init();
     }

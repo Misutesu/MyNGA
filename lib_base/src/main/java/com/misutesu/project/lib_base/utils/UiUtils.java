@@ -20,7 +20,7 @@ public class UiUtils {
     private static int navigationBarHeight = 0;
 
     public static void init(Context context) {
-        if (screenWidth == 0 || screenHeight == 0 || screenDensity == 0 || densityDpi == 0 || statusBarHeight == 0) {
+        if (mContext == null) {
             if (context == null) {
                 return;
             }

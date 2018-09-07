@@ -19,7 +19,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/FirstStyle">
+        android:theme="@style/FirstStyle"
+        tools:ignore="UnusedAttribute">
 
         <activity android:name=".mvp.ui.activity.MainActivity">
             <intent-filter>
@@ -29,6 +30,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".mvp.ui.activity.InitActivity"/>
+        <activity android:name=".mvp.ui.activity.InitActivity" />
     </application>
 </manifest>
