@@ -10,12 +10,16 @@ import android.util.TypedValue;
 
 import com.misutesu.project.lib_base.R;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThemeUtils {
 
     private static final String SP_NAME = "Theme";
+
+    private static WeakReference<Context> mContext;
+
     private static List<Integer> styles = new ArrayList<>();
 
     private static SharedPreferences preferences;
@@ -27,9 +31,10 @@ public class ThemeUtils {
     }
 
     public static void init(Context context) {
-        if (preferences == null) {
+        if (mContext == null) {
             synchronized (ThemeUtils.class) {
-                if (preferences == null) {
+                if (mContext == null) {
+                    mContext = new WeakReference<>(context);
                     preferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
                     styles.clear();
                     styles.add(R.style.BlueTheme);
