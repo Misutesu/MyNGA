@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseHolder<T>> {
 
-    private List<T> mList = new ArrayList<>();
+    protected List<T> mList = new ArrayList<>();
 
     protected abstract int bindXML(int viewType);
 

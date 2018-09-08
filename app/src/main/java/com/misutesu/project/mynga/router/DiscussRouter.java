@@ -8,4 +8,9 @@ public interface DiscussRouter {
      * 主页
      */
     String main = base + "/main";
+
+    /**
+     * 帖子列表
+     */
+    String post_list = base + "/post_list";
 }

@@ -27,7 +27,7 @@ public class SnackBarUtils {
             Timber.tag(TAG).w("getCurrentActivity()==null when SnackBarUtils.show()");
         } else {
             View view = ActivityUtils.getCurrentActivity().getWindow().getDecorView().findViewById(android.R.id.content);
-            Snackbar.make(view, msg, isLong ? Snackbar.LENGTH_LONG : Snackbar.LENGTH_SHORT);
+            Snackbar.make(view, msg, isLong ? Snackbar.LENGTH_LONG : Snackbar.LENGTH_SHORT).show();
         }
     }
 }

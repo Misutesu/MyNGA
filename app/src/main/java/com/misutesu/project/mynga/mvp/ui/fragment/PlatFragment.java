@@ -3,11 +3,14 @@ package com.misutesu.project.mynga.mvp.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
@@ -26,6 +29,8 @@ import com.misutesu.project.mynga.entity.Plate;
 import com.misutesu.project.mynga.mvp.contract.PlateContract;
 import com.misutesu.project.mynga.mvp.presenter.PlatePresenterImpl;
 import com.misutesu.project.mynga.mvp.ui.adapter.PlateAdapter;
+import com.misutesu.project.mynga.mvp.ui.itemhelper.PlateItemHelper;
+import com.misutesu.project.mynga.router.DiscussRouter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +38,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class PlatFragment extends BaseFragment<PlateContract.Presenter> implements PlateContract.View {
+public class PlatFragment extends BaseFragment<PlateContract.Presenter> implements PlateContract.View, PlateAdapter.OnPlateItemClickListener {
 
     private static final String KEY_RESULT_BEAN = "key_result_bean";
 
@@ -41,6 +46,7 @@ public class PlatFragment extends BaseFragment<PlateContract.Presenter> implemen
     RecyclerView recyclerView;
 
     private PlateAdapter mAdapter;
+    private GridLayoutManager mLayoutManager;
 
     private AllPlate.ResultBean mResultBean;
 
@@ -73,8 +79,9 @@ public class PlatFragment extends BaseFragment<PlateContract.Presenter> implemen
         if (mResultBean == null) {
             mPresenter.getCollectPlats();
         } else {
-            List<Plate> list = new ArrayList<>();
+            List list = new ArrayList<>();
             for (AllPlate.ResultBean.GroupsBean bean : mResultBean.getGroups()) {
+                list.add(bean);
                 list.addAll(bean.getForums());
             }
             initRecycler(list);
@@ -91,10 +98,34 @@ public class PlatFragment extends BaseFragment<PlateContract.Presenter> implemen
 
     }
 
-    private void initRecycler(List<Plate> plates) {
+    private void initRecycler(List plates) {
         mAdapter = new PlateAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mLayoutManager = new GridLayoutManager(getContext(), 3);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (plates.get(position) instanceof Plate) {
+                    return 1;
+                }
+                return 3;
+            }
+        });
+        recyclerView.setLayoutManager(mLayoutManager);
+        if (mResultBean == null) {
+            ItemTouchHelper.Callback callback = new PlateItemHelper(mAdapter);
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+            itemTouchHelper.attachToRecyclerView(recyclerView);
+        }
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnPlateItemClickListener(this);
         mAdapter.setData(plates);
+    }
+
+    @Override
+    public void onItemClick(int position, Plate plate) {
+        ARouter.getInstance()
+                .build(DiscussRouter.post_list)
+                .withSerializable(Plate.class.getName(), plate)
+                .navigation();
     }
 }

@@ -2,16 +2,20 @@ package com.misutesu.project.mynga.mvp.ui.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,10 +34,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 @Route(group = DiscussRouter.group, path = DiscussRouter.main)
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements MainContract.View {
 
+    @BindView(R.id.view_status)
+    View statusView;
     @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
     @BindView(R.id.tool_bar)
@@ -44,6 +51,10 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.iv_user)
+    AppCompatImageView ivUser;
+    @BindView(R.id.tv_user)
+    AppCompatTextView tvUser;
 
     private List<String> mTitles = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
@@ -65,12 +76,26 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-        BaseUtils.addStatusBarPadding(appBarLayout);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusHeight = UiUtils.getStatusBarHeight();
+            if (statusHeight != 0) {
+                ViewGroup.LayoutParams lpStatus = statusView.getLayoutParams();
+                lpStatus.height = statusHeight;
+                statusView.requestLayout();
+
+                CoordinatorLayout.LayoutParams lpAppbar = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+                lpAppbar.topMargin += statusHeight;
+                appBarLayout.requestLayout();
+            }
+        }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             drawerLayout.setFitsSystemWindows(true);
             drawerLayout.setClipToPadding(false);
         }
+
+        ivUser.setImageResource(R.drawable.default_user);
+        tvUser.setText(R.string.NGA);
 
         mPresenter.getAllPlat();
     }
@@ -113,5 +138,31 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @Override
     public void getAllPlatEnd() {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.tool_bar_search) {
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick({R.id.ll_user})
+    public void onViewClicked(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.ll_user:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
     }
 }

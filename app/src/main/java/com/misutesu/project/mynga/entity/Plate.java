@@ -2,14 +2,17 @@ package com.misutesu.project.mynga.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "collect_plat")
+@Entity(tableName = "collect_plat", indices = {@Index(value = "id", unique = true)})
 public class Plate implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int cid;
+
     private int id;
 
     private String name;
@@ -20,6 +23,14 @@ public class Plate implements Serializable {
 
     @Ignore
     private boolean is_forumlist;
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 
     public int getId() {
         return id;
@@ -59,5 +70,17 @@ public class Plate implements Serializable {
 
     public void setIs_forumlist(boolean is_forumlist) {
         this.is_forumlist = is_forumlist;
+    }
+
+    @Override
+    public String toString() {
+        return "Plate{" +
+                "cid=" + cid +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", info='" + info + '\'' +
+                ", icon='" + icon + '\'' +
+                ", is_forumlist=" + is_forumlist +
+                '}';
     }
 }
