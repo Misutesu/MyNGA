@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "collect_plat", indices = {@Index(value = "id", unique = true)})
+@Entity(tableName = "collect_plat")
 public class Plate implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

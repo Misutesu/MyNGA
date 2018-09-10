@@ -25,6 +25,10 @@ public interface PostListContract {
     interface View extends IView {
         void getPlate(Plate plate);
 
+        void collectActionSuccess(boolean isStar);
+
+        void collectActionError();
+
         void getPostListSuccess(boolean isRefresh, PostList list);
 
         void getPostListError(String msg);

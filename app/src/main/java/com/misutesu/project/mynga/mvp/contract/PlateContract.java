@@ -15,6 +15,8 @@ public interface PlateContract {
     interface Model extends IModel {
 
         Flowable<List<Plate>> getCollectPlats();
+
+        void updatePlates(List<Plate> plates);
     }
 
     interface View extends IView {
@@ -27,5 +29,7 @@ public interface PlateContract {
     interface Presenter extends IPresenter {
 
         void getCollectPlats();
+
+        void exchangePlate(Plate fromPlate, Plate toPlate);
     }
 }

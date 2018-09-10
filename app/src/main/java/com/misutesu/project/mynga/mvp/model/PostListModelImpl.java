@@ -10,7 +10,6 @@ import com.misutesu.project.mynga.mvp.contract.PostListContract;
 
 import java.util.UUID;
 
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -23,7 +22,7 @@ public class PostListModelImpl extends BaseModel implements PostListContract.Mod
 
     @Override
     public void insertPlate(Plate plate) {
-        RoomManager.getNGADatabase().getCollectPlateDao().insertCollectPlat(plate);
+        RoomManager.getNGADatabase().getCollectPlateDao().insertPlat(plate);
     }
 
     @Override

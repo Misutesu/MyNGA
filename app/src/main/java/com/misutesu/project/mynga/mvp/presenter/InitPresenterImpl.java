@@ -12,6 +12,7 @@ import cn.bmob.v3.BmobQuery;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -31,11 +32,11 @@ public class InitPresenterImpl extends BasePresenter<InitContract.Model, InitCon
         addSubscription(mModel.getServerInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(throwable -> mRootView.getServerInfoError())
                 .subscribe(servers -> {
-                    ServerConfig.setServers(servers);
-                    RetrofitUrlManager.getInstance().setGlobalDomain(ServerConfig.getUrl(ServerConfig.SERVER_API));
-                    mRootView.getServerInfoSuccess();
-                }));
+                            ServerConfig.setServers(servers);
+                            RetrofitUrlManager.getInstance().setGlobalDomain(ServerConfig.getUrl(ServerConfig.SERVER_API));
+                            mRootView.getServerInfoSuccess();
+                        }
+                        , throwable -> mRootView.getServerInfoError()));
     }
 }

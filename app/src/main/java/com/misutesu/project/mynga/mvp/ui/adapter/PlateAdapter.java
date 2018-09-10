@@ -57,11 +57,6 @@ public class PlateAdapter extends BaseAdapter {
         this.onPlateItemClickListener = onPlateItemClickListener;
     }
 
-    public void onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(mList, fromPosition, toPosition);
-        notifyItemMoved(fromPosition, toPosition);
-    }
-
     public class PlateTypeHolder extends BaseHolder<AllPlate.ResultBean.GroupsBean> {
 
         @BindView(R.id.tv_type)

@@ -7,9 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseHolder<T>> {
+
+    public interface OnItemMoveListener {
+        void onItemMove(int fromPosition, int toPosition);
+    }
+
+    private OnItemMoveListener onItemMoveListener;
 
     protected List<T> mList = new ArrayList<>();
 
@@ -33,12 +40,23 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseHolder<T>>
         return mList.size();
     }
 
+    public void setOnItemMoveListener(OnItemMoveListener onItemMoveListener) {
+        this.onItemMoveListener = onItemMoveListener;
+    }
+
     public List<T> getData() {
         return mList;
     }
 
     public T getItem(int position) {
         return mList.get(position);
+    }
+
+    public void replaceData(List<T> list) {
+        if (list != null && !list.isEmpty()) {
+            mList.clear();
+            mList.addAll(list);
+        }
     }
 
     public void setData(List<T> list) {
@@ -82,5 +100,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseHolder<T>>
     public void removeAll() {
         notifyItemRangeRemoved(0, mList.size());
         mList.clear();
+    }
+
+    public void onItemMove(int fromPosition, int toPosition) {
+        Collections.swap(mList, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+        if (onItemMoveListener != null) {
+            onItemMoveListener.onItemMove(fromPosition, toPosition);
+        }
     }
 }

@@ -5,6 +5,8 @@ import com.misutesu.project.mynga.mvp.contract.MainContract;
 import com.misutesu.project.mynga.mvp.model.MainModelImpl;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenterImpl extends BasePresenter<MainContract.Model, MainContract.View> implements MainContract.Presenter {
@@ -21,9 +23,10 @@ public class MainPresenterImpl extends BasePresenter<MainContract.Model, MainCon
     @Override
     public void getAllPlat() {
         addDisposable(mModel.getAllPlat()
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .doOnError(throwable -> mRootView.getAllPlatError())
-                .doOnComplete(() -> mRootView.getAllPlatEnd())
-                .subscribe(allPlate -> mRootView.getAllPlatSuccess(allPlate)));
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(allPlate -> mRootView.getAllPlatSuccess(allPlate)
+                        , throwable -> mRootView.getAllPlatError()
+                        , () -> mRootView.getAllPlatEnd()));
     }
 }

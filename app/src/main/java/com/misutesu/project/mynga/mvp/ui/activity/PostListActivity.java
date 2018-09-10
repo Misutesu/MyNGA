@@ -80,8 +80,19 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
 
     @Override
     public void getPlate(Plate plate) {
-        mIsStar = plate == null;
+        mIsStar = plate != null;
         invalidateOptionsMenu();
+    }
+
+    @Override
+    public void collectActionSuccess(boolean isStar) {
+        mIsStar = isStar;
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void collectActionError() {
+        SnackBarUtils.show(R.string.collect_action_error);
     }
 
     @Override

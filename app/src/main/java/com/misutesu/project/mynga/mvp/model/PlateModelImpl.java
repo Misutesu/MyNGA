@@ -16,4 +16,9 @@ public class PlateModelImpl extends BaseModel implements PlateContract.Model {
     public Flowable<List<Plate>> getCollectPlats() {
         return RoomManager.getNGADatabase().getCollectPlateDao().getCollectPlate();
     }
+
+    @Override
+    public void updatePlates(List<Plate> plates) {
+        RoomManager.getNGADatabase().getCollectPlateDao().updatePlates(plates);
+    }
 }

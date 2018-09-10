@@ -25,10 +25,13 @@ public interface CollectPlateDao {
     Single<Plate> getPlate(int id);
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
-    void insertCollectPlat(Plate plate);
+    void insertPlat(Plate plate);
 
     @Update
     void updatePlate(Plate plate);
+
+    @Update
+    void updatePlates(List<Plate> plates);
 
     @Delete
     void deletePlate(Plate plate);
