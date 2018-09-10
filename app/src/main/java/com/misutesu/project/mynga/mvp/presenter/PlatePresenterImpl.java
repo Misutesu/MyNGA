@@ -33,7 +33,6 @@ public class PlatePresenterImpl extends BasePresenter<PlateContract.Model, Plate
         addDisposable(mModel.getCollectPlats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(throwable -> mRootView.getCollectPlatsError())
                 .subscribe(plates -> mRootView.getCollectPlatsSuccess(plates)
                         , throwable -> mRootView.getCollectPlatsError()));
     }

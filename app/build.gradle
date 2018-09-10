@@ -48,7 +48,7 @@ android {
 dependencies {
     implementation project(':lib_base')
     implementation project(":component:bmob_module")
-    implementation project(":component:rxpermission")
+    implementation project(':component:rx_permission')
 
     annotationProcessor(rootProject.ext.dependencies["arouter-compiler"]) {
         exclude module: 'support-annotations'

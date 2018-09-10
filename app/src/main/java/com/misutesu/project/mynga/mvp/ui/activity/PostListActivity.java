@@ -3,6 +3,7 @@ package com.misutesu.project.mynga.mvp.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,14 +12,20 @@ import android.view.MenuItem;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.misutesu.project.lib_base.base.BaseActivity;
 import com.misutesu.project.lib_base.utils.BaseUtils;
+import com.misutesu.project.lib_base.utils.EventBusUtils;
 import com.misutesu.project.lib_base.utils.SnackBarUtils;
 import com.misutesu.project.lib_base.utils.ThemeUtils;
 import com.misutesu.project.mynga.R;
 import com.misutesu.project.mynga.data.PostList;
 import com.misutesu.project.mynga.entity.Plate;
+import com.misutesu.project.mynga.entity.Post;
+import com.misutesu.project.mynga.event.PlateCollectEvent;
 import com.misutesu.project.mynga.mvp.contract.PostListContract;
 import com.misutesu.project.mynga.mvp.presenter.PostListPresenterImpl;
+import com.misutesu.project.mynga.mvp.ui.adapter.PostAdapter;
 import com.misutesu.project.mynga.router.DiscussRouter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Objects;
 
@@ -26,7 +33,8 @@ import butterknife.BindView;
 import timber.log.Timber;
 
 @Route(group = DiscussRouter.group, path = DiscussRouter.post_list)
-public class PostListActivity extends BaseActivity<PostListContract.Presenter> implements PostListContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class PostListActivity extends BaseActivity<PostListContract.Presenter> implements PostListContract.View, SwipeRefreshLayout.OnRefreshListener
+        , PostAdapter.OnPostClickListener {
 
     @BindView(R.id.tool_bar)
     Toolbar toolBar;
@@ -40,6 +48,9 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
     private int page = 1;
 
     private boolean mIsStar;
+
+    private PostAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     protected PostListContract.Presenter bindPresenter() {
@@ -61,11 +72,19 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
 
         toolBar.setTitle(mPlate.getName());
         setSupportActionBar(toolBar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         toolBar.setNavigationOnClickListener(v -> finish());
 
         refreshLayout.setColorSchemeColors(ThemeUtils.getColor(this, R.attr.colorPrimary));
         refreshLayout.setOnRefreshListener(this);
+
+        mAdapter = new PostAdapter();
+        mAdapter.setOnPostClickListener(this);
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(mAdapter);
 
         mPresenter.getCollectPlate(mPlate.getId());
 
@@ -74,7 +93,6 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
 
     @Override
     public void onRefresh() {
-        page = 1;
         mPresenter.getPostList(true, mPlate.getId(), page);
     }
 
@@ -88,6 +106,7 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
     public void collectActionSuccess(boolean isStar) {
         mIsStar = isStar;
         invalidateOptionsMenu();
+        EventBusUtils.post(new PlateCollectEvent());
     }
 
     @Override
@@ -99,6 +118,7 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
     public void getPostListSuccess(boolean isRefresh, PostList list) {
         if (isRefresh) {
             page = 1;
+            mAdapter.setData(list.getResult().getData());
         } else {
             page++;
         }
@@ -143,5 +163,10 @@ public class PostListActivity extends BaseActivity<PostListContract.Presenter> i
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPostClick(Post post) {
+        Timber.d("TAG : %s", post.toString());
     }
 }

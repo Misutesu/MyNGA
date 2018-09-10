@@ -11,7 +11,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/component" />
             <option value="$PROJECT_DIR$/component/bmob_module" />
-            <option value="$PROJECT_DIR$/component/rxpermission" />
+            <option value="$PROJECT_DIR$/component/public_layout" />
+            <option value="$PROJECT_DIR$/component/rx_permission" />
             <option value="$PROJECT_DIR$/lib_base" />
           </set>
         </option>

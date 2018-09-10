@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tv_type"
     android:layout_width="match_parent"
     android:layout_height="32dp"
-    android:gravity="center_vertical"
-    android:paddingEnd="12dp"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
-    android:paddingStart="12dp"
-    android:textColor="?attr/textColor1"
-    android:textSize="14sp"
-    tools:text="Plate Type" />
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="10dp"
+        android:src="@drawable/icon_circle"
+        android:tint="?attr/iconColor" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_type"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:textColor="?attr/textColor1"
+        android:textSize="14sp"
+        tools:text="Plate Type" />
+</LinearLayout>

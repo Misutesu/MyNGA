@@ -3,6 +3,7 @@ package com.misutesu.project.mynga.mvp.ui.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -23,6 +24,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.misutesu.project.lib_base.base.BaseActivity;
 import com.misutesu.project.lib_base.utils.BaseUtils;
 import com.misutesu.project.lib_base.utils.UiUtils;
+import com.misutesu.project.lib_base.view.ProgressBar;
 import com.misutesu.project.mynga.R;
 import com.misutesu.project.mynga.data.AllPlate;
 import com.misutesu.project.mynga.mvp.contract.MainContract;
@@ -51,6 +53,10 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+    @BindView(R.id.retry_btn)
+    MaterialButton retryBtn;
     @BindView(R.id.iv_user)
     AppCompatImageView ivUser;
     @BindView(R.id.tv_user)
@@ -132,12 +138,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     public void getAllPlatError() {
-
+        retryBtn.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void getAllPlatEnd() {
-
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -156,13 +162,22 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick({R.id.ll_user})
+    @OnClick({R.id.ll_user, R.id.retry_btn})
     public void onViewClicked(View view) {
         int id = view.getId();
         switch (id) {
             case R.id.ll_user:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
+            case R.id.retry_btn:
+                mPresenter.getAllPlat();
+                retryBtn.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+                break;
         }
+    }
+
+    public void toCollect() {
+        viewPager.setCurrentItem(1);
     }
 }

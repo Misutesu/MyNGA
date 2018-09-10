@@ -82,6 +82,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:background="@drawable/elevation_top" />
+
+            <com.misutesu.project.lib_base.view.ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:progress_color="?attr/iconColor" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/retry_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/retry"
+                android:visibility="invisible" />
         </FrameLayout>
 
     </android.support.design.widget.CoordinatorLayout>

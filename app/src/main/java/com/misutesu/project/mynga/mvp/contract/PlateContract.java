@@ -10,11 +10,12 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface PlateContract {
     interface Model extends IModel {
 
-        Flowable<List<Plate>> getCollectPlats();
+        Single<List<Plate>> getCollectPlats();
 
         void updatePlates(List<Plate> plates);
     }

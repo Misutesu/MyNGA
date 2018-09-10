@@ -19,7 +19,7 @@ import io.reactivex.Single;
 public interface CollectPlateDao {
 
     @Query("select * from collect_plat")
-    Flowable<List<Plate>> getCollectPlate();
+    Single<List<Plate>> getPlates();
 
     @Query("select * from collect_plat where id = :id")
     Single<Plate> getPlate(int id);

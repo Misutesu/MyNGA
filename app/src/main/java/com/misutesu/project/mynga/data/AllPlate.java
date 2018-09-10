@@ -83,6 +83,13 @@ public class AllPlate {
             private String info;
             private List<Plate> forums;
 
+            public GroupsBean() {
+            }
+
+            public GroupsBean(String name) {
+                this.name = name;
+            }
+
             public int getId() {
                 return id;
             }

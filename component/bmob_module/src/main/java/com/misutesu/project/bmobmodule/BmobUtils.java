@@ -1,4 +1,4 @@
-package com.misutesu.project.bmob_module;
+package com.misutesu.project.bmobmodule;
 
 import android.content.Context;
 

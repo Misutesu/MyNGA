@@ -3,7 +3,7 @@ package com.misutesu.project.mynga.application;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.misutesu.project.bmob_module.BmobUtils;
+import com.misutesu.project.bmobmodule.BmobUtils;
 import com.misutesu.project.lib_base.utils.ThemeUtils;
 import com.misutesu.project.lib_base.utils.UiUtils;
 import com.misutesu.project.mynga.BuildConfig;

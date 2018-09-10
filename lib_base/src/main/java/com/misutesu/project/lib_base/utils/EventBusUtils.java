@@ -14,4 +14,12 @@ public class EventBusUtils {
             EventBus.getDefault().unregister(o);
         }
     }
+
+    public static void post(BaseEvent event){
+        EventBus.getDefault().post(event);
+    }
+
+    public static class BaseEvent{
+
+    }
 }

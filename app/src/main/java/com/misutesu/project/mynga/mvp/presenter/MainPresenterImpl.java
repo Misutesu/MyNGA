@@ -25,8 +25,17 @@ public class MainPresenterImpl extends BasePresenter<MainContract.Model, MainCon
         addDisposable(mModel.getAllPlat()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(allPlate -> mRootView.getAllPlatSuccess(allPlate)
-                        , throwable -> mRootView.getAllPlatError()
+                .subscribe(allPlate -> {
+                            if (allPlate.getCode() == 0) {
+                                mRootView.getAllPlatSuccess(allPlate);
+                            } else {
+                                mRootView.getAllPlatError();
+                            }
+                        }
+                        , throwable -> {
+                            mRootView.getAllPlatError();
+                            mRootView.getAllPlatEnd();
+                        }
                         , () -> mRootView.getAllPlatEnd()));
     }
 }

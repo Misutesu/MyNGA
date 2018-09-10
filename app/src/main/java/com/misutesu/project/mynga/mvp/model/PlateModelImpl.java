@@ -8,13 +8,13 @@ import com.misutesu.project.mynga.mvp.contract.PlateContract;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class PlateModelImpl extends BaseModel implements PlateContract.Model {
 
     @Override
-    public Flowable<List<Plate>> getCollectPlats() {
-        return RoomManager.getNGADatabase().getCollectPlateDao().getCollectPlate();
+    public Single<List<Plate>> getCollectPlats() {
+        return RoomManager.getNGADatabase().getCollectPlateDao().getPlates();
     }
 
     @Override
