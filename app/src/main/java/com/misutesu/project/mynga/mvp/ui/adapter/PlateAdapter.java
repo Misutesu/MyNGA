@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.misutesu.project.lib_base.base.recycler.BaseAdapter;
@@ -41,16 +42,11 @@ public class PlateAdapter extends BaseAdapter {
     }
 
     @Override
-    protected int bindXML(int viewType) {
-        return viewType;
-    }
-
-    @Override
-    protected BaseHolder getHolder(View view, int viewType) {
+    protected BaseHolder getHolder(ViewGroup viewGroup, int viewType) {
         if (viewType == PLATE) {
-            return new PlateHolder(view);
+            return new PlateHolder(getView(viewGroup, viewType));
         }
-        return new PlateTypeHolder(view);
+        return new PlateTypeHolder(getView(viewGroup, viewType));
     }
 
     public void setOnPlateItemClickListener(OnPlateItemClickListener onPlateItemClickListener) {

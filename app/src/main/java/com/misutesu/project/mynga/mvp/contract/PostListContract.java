@@ -31,7 +31,7 @@ public interface PostListContract {
 
         void getPostListSuccess(boolean isRefresh, PostList list);
 
-        void getPostListError(String msg);
+        void getPostListError(boolean isRefresh, String msg);
 
         void getPostListEnd();
     }

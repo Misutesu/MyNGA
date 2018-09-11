@@ -9,6 +9,7 @@ import com.misutesu.project.lib_base.utils.UiUtils;
 import com.misutesu.project.mynga.BuildConfig;
 import com.misutesu.project.mynga.config.ServerConfig;
 import com.misutesu.project.mynga.database.RoomManager;
+import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
 
@@ -21,6 +22,9 @@ public class NGAApplication extends Application {
         if (BuildConfig.DEBUG) {
             ARouter.openLog();
             ARouter.openDebug();
+            if (!LeakCanary.isInAnalyzerProcess(this)) {
+                LeakCanary.install(this);
+            }
         }
         if (BuildConfig.LOG_DEBUG) {
             Timber.plant(new Timber.DebugTree());

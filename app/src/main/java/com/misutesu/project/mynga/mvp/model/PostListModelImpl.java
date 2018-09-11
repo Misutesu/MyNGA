@@ -1,5 +1,6 @@
 package com.misutesu.project.mynga.mvp.model;
 
+import com.google.gson.Gson;
 import com.misutesu.project.lib_base.base.BaseModel;
 import com.misutesu.project.lib_base.http.RetrofitManager;
 import com.misutesu.project.mynga.api.PlateApi;
@@ -34,5 +35,19 @@ public class PostListModelImpl extends BaseModel implements PostListContract.Mod
     public Observable<PostList> getPostList(int plateId, int page) {
         return RetrofitManager.getInstance().create(PlateApi.class)
                 .getPostList(plateId, page, System.currentTimeMillis(), UUID.randomUUID().toString());
+    }
+
+    public static <T> T get(Class<T> cT) {
+        try {
+            Class<T> c = (Class<T>) Class.forName(cT.getName());
+            return c.newInstance();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

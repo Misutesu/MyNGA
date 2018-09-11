@@ -1,5 +1,7 @@
 package com.misutesu.project.mynga.entity;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -7,14 +9,30 @@ import java.util.List;
 
 public class PostListTitle {
 
-    public static int TOP = 0;
-    public static int HOT = 1;
-    public static int ESSENCE = 2;
-    public static int HEADER = 3;
-    public static int CHILD = 4;
+    public static final int TOP = 0;
+    public static final int HOT = 1;
+    public static final int ESSENCE = 2;
+    public static final int HEADER = 3;
+    public static final int CHILD = 4;
 
     private List<ChildPlate> childPlates;
     private PlateHeader plateHeader;
+
+    public List<ChildPlate> getChildPlates() {
+        return childPlates;
+    }
+
+    public void setChildPlates(List<ChildPlate> childPlates) {
+        this.childPlates = childPlates;
+    }
+
+    public PlateHeader getPlateHeader() {
+        return plateHeader;
+    }
+
+    public void setPlateHeader(PlateHeader plateHeader) {
+        this.plateHeader = plateHeader;
+    }
 
     public class PlateHeader implements Serializable {
         /**
@@ -24,8 +42,8 @@ public class PostListTitle {
          */
 
         private String title;
-        private int opentype;
-        private int opendata;
+        private int opentype = -1;
+        private int opendata = -1;
 
         public String getTitle() {
             return title;
@@ -49,6 +67,10 @@ public class PostListTitle {
 
         public void setOpendata(int opendata) {
             this.opendata = opendata;
+        }
+
+        public boolean isEmpty() {
+            return TextUtils.isEmpty(title);
         }
     }
 

@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.chip.ChipGroup xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/chip_group"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:chipSpacing="6dp" />
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/post_list"
+        android:textColor="?attr/textColor1"
+        android:textSize="14sp" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_menu"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="4dp"
+        android:src="@drawable/icon_menu"
+        android:tint="?attr/iconColor" />
+</FrameLayout>

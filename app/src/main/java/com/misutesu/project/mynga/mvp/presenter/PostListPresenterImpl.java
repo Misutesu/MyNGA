@@ -62,10 +62,13 @@ public class PostListPresenterImpl extends BasePresenter<PostListContract.Model,
                             if (list.getCode() == 0) {
                                 mRootView.getPostListSuccess(isRefresh, list);
                             } else {
-                                mRootView.getPostListError(list.getMsg());
+                                mRootView.getPostListError(isRefresh, list.getMsg());
                             }
                         }
-                        , throwable -> mRootView.getPostListError(throwable.getMessage())
+                        , throwable -> {
+                            mRootView.getPostListError(isRefresh, throwable.getMessage());
+                            mRootView.getPostListEnd();
+                        }
                         , () -> mRootView.getPostListEnd()));
     }
 }

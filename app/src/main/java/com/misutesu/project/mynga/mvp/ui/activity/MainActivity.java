@@ -19,12 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.misutesu.project.lib_base.base.BaseActivity;
-import com.misutesu.project.lib_base.utils.BaseUtils;
 import com.misutesu.project.lib_base.utils.UiUtils;
-import com.misutesu.project.lib_base.view.ProgressBar;
 import com.misutesu.project.mynga.R;
 import com.misutesu.project.mynga.data.AllPlate;
 import com.misutesu.project.mynga.mvp.contract.MainContract;
@@ -55,7 +54,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     ViewPager viewPager;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.retry_btn)
+    @BindView(R.id.btn_retry)
     MaterialButton retryBtn;
     @BindView(R.id.iv_user)
     AppCompatImageView ivUser;
@@ -162,14 +161,14 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick({R.id.ll_user, R.id.retry_btn})
+    @OnClick({R.id.ll_user, R.id.btn_retry})
     public void onViewClicked(View view) {
         int id = view.getId();
         switch (id) {
             case R.id.ll_user:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.retry_btn:
+            case R.id.btn_retry:
                 mPresenter.getAllPlat();
                 retryBtn.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.VISIBLE);

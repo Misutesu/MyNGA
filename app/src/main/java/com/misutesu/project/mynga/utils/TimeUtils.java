@@ -6,6 +6,7 @@ import java.util.Locale;
 public class TimeUtils {
 
     private static final String FORMAT = "yyyy年MM月dd日 HH:mm:ss";
+    private static final SimpleDateFormat sdf=new SimpleDateFormat(FORMAT, Locale.CHINA);
 
     public static String getDistanceTime(long time) {
         StringBuilder timeStr = new StringBuilder();
@@ -19,7 +20,6 @@ public class TimeUtils {
         } else if (seconds < 3 * 24 * 60 * 60) {
             timeStr.append(seconds / 60 / 60 / 24).append("天前");
         } else {
-            SimpleDateFormat sdf = new SimpleDateFormat(FORMAT, Locale.CHINA);
             return sdf.format(time);
         }
         return timeStr.toString();

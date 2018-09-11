@@ -1,11 +1,14 @@
 package com.misutesu.project.lib_base.base.recycler;
 
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,14 +23,16 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseHolder<T>>
 
     protected List<T> mList = new ArrayList<>();
 
-    protected abstract int bindXML(int viewType);
+    protected abstract BaseHolder<T> getHolder(ViewGroup viewGroup, int position);
 
-    protected abstract BaseHolder<T> getHolder(View view, int viewType);
+    protected View getView(ViewGroup viewGroup, @LayoutRes int res) {
+        return LayoutInflater.from(viewGroup.getContext()).inflate(res, viewGroup, false);
+    }
 
     @NonNull
     @Override
     public BaseHolder<T> onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return getHolder(LayoutInflater.from(viewGroup.getContext()).inflate(bindXML(viewType), viewGroup, false), viewType);
+        return getHolder(viewGroup, viewType);
     }
 
     @Override

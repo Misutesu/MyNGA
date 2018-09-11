@@ -12,8 +12,12 @@
     <string name="no_star">取消收藏</string>
     <string name="collect_action_error">收藏操作失败</string>
     <string name="to_collect">去收藏</string>
+
+    <string name="post_list">帖子列表</string>
+
     <string name="plate_top">置顶</string>
     <string name="plate_hot">热门</string>
     <string name="plate_essence">精华</string>
+    <string name="plate_header">版头</string>
     <string name="plate_child">子面板</string>
 </resources>

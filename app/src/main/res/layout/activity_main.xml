@@ -83,15 +83,14 @@
                 android:layout_height="4dp"
                 android:background="@drawable/elevation_top" />
 
-            <com.misutesu.project.lib_base.view.ProgressBar
+            <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:progress_color="?attr/iconColor" />
+                android:layout_gravity="center" />
 
             <android.support.design.button.MaterialButton
-                android:id="@+id/retry_btn"
+                android:id="@+id/btn_retry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
