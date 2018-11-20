@@ -19,7 +19,7 @@ android {
 
 dependencies {
     implementation project(':lib_base')
-    api('cn.bmob.android:bmob-sdk:3.6.3') {
+    api('cn.bmob.android:bmob-sdk:3.6.8-rc1') {
         exclude module: 'okhttp'
         exclude module: 'okio'
         exclude module: 'gson'

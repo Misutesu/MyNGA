@@ -7,7 +7,7 @@ import com.misutesu.project.mynga.entity.Server;
 
 import java.util.List;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 public interface InitContract {
 

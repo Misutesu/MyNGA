@@ -1,7 +1,7 @@
 ext {
     android = [
             compileSdkVersion: 28,
-            buildToolsVersion: "28.0.2",
+            buildToolsVersion: "28.0.3",
             minSdkVersion    : 14,
             targetSdkVersion : 28,
             versionCode      : 1,
@@ -9,24 +9,24 @@ ext {
     ]
 
     version = [
-            androidSupportVersion : "28.0.0-rc01",
-            constraintVersion     : "1.1.2",
-            butterknifeVersion    : "8.8.1",
-            okhttpVersion         : "3.11.0",
-            retrofitVersion       : "2.4.0",
+            androidSupportVersion : "28.0.0",
+            constraintVersion     : "1.1.3",
+            butterknifeVersion    : "9.0.0-rc2",
+            okhttpVersion         : "3.12.0",
+            retrofitVersion       : "2.5.0",
             rxJavaVersion         : "1.3.8",
             rxAndroidVersion      : "1.2.1",
-            rxJava2Version        : "2.2.1",
+            rxJava2Version        : "2.2.3",
             rxAndroid2Version     : "2.1.0",
-            arouterVersion        : "1.4.0",
-            arouterCompilerVersion: "1.2.1",
+            arouterVersion        : "1.4.1",
+            arouterCompilerVersion: "1.2.2",
             glideVersion          : "4.8.0",
             pagingVersion         : "1.0.0",
             roomVersion           : "1.1.1",
             gsonVersion           : "2.8.5",
             eventBusVersion       : "3.1.1",
             timberVersion         : "4.7.1",
-            canaryVersion         : "1.6.1"
+            canaryVersion         : "1.6.2"
     ]
 
     dependencies = [

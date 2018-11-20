@@ -7,7 +7,7 @@ import com.misutesu.project.mynga.mvp.contract.InitContract;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
-import rx.Observable;
+import io.reactivex.Observable;
 
 public class InitModelImpl extends BaseModel implements InitContract.Model {
 
